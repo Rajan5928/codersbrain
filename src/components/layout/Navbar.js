@@ -1,9 +1,17 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink} from "react-csv";
 import {Link, NavLink} from 'react-router-dom';
 const Navbar = () => {
-    
+    const [users, setUser] = useState([]);
+    useEffect(() => {
+        loadUsers();
+    }, []);
+    const loadUsers = async () => {
+        const result = await axios.get("http://localhost:3003/users");
+        setUser(result.data);
+    };
+    const k= JSON.parse(JSON.stringify(users));
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
@@ -23,7 +31,7 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                <Link className="btn btn-outline-light mr-2" >Export Data</Link>
+                <CSVLink data={k} className="btn btn-outline-light mr-2" >Export Data</CSVLink>
                 <Link className="btn btn-outline-light" to="/users/add">Add User</Link>
             </div>
             

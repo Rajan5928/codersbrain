@@ -26,10 +26,10 @@ const Admin = () => {
         <div className="container">
             <div className="py-4">
                 <h1>Admin Page</h1>
-                <input class="my-3 shadow form-control" type="text" placeholder="Search Bar" 
+                <input className="my-3 shadow form-control" type="text" placeholder="Search Bar" 
                     onChange={e => setSearch(e.target.value)}/>
-                <table class="table border shadow">
-                    <thead class="thead-dark">
+                <table className="table border shadow">
+                    <thead className="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
@@ -41,15 +41,15 @@ const Admin = () => {
                     <tbody>
                         {
                             filteredUsers.map((user,index)=>(
-                                <tr>
+                                <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <Link class="btn btn-primary mr-2" to={`users/${user.id}`}>View</Link>
-                                        <Link class="btn btn-outline-primary mr-2" to={`users/edit/${user.id}`}>Edit</Link>
-                                        <Link class="btn btn-danger" onClick={()=>deleteUser(user.id)}>Delete</Link>
+                                        <Link className="btn btn-primary mr-2" to={`users/${user.id}`}>View</Link>
+                                        <Link className="btn btn-outline-primary mr-2" to={`users/edit/${user.id}`}>Edit</Link>
+                                        <button className="btn btn-danger" onClick={()=>deleteUser(user.id)}>Delete</button>
                                     </td>
                                 </tr>
                             ))

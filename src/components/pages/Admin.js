@@ -17,15 +17,16 @@ const Admin = () => {
         await axios.delete(`http://localhost:3003/users/${id}`);
         loadUsers();
     }
-   /* const susers = users.filter(user => {
-        return user.email.includes(search)
-    })*/
+    let filteredUsers = users.filter(
+        (user) => {
+            return user.email.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        }
+    );
     return (
         <div className="container">
             <div className="py-4">
                 <h1>Admin Page</h1>
-                {search}
-                <input class="form-control" type="text" placeholder="Search Bar" 
+                <input class="my-3 shadow form-control" type="text" placeholder="Search Bar" 
                     onChange={e => setSearch(e.target.value)}/>
                 <table class="table border shadow">
                     <thead class="thead-dark">
@@ -39,7 +40,7 @@ const Admin = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user,index)=>(
+                            filteredUsers.map((user,index)=>(
                                 <tr>
                                     <th scope="row">{index + 1}</th>
                                     <td>{user.name}</td>

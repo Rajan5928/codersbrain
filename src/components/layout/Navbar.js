@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios';
+import { CSVLink, CSVDownload } from "react-csv";
 import {Link, NavLink} from 'react-router-dom';
 const Navbar = () => {
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
@@ -19,6 +22,8 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
+
+                <Link className="btn btn-outline-light mr-2" >Export Data</Link>
                 <Link className="btn btn-outline-light" to="/users/add">Add User</Link>
             </div>
             
